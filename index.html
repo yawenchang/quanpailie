@@ -1,0 +1,319 @@
+<html>
+<head>
+<style type="text/css">
+div.container
+{
+width:100%;
+margin:0px;
+border:1px solid white;
+line-height:150%;
+}
+h1
+{
+font-family:Georgia;
+}
+div.header
+{
+padding:0.5em;
+color:black;
+border-bottom:1px solid blue;
+background-color:white;
+clear:left;
+height:10%
+}
+div.left
+{
+float:left;
+width:100px;
+margin:0;
+padding:1em;
+height:90%
+}
+div.bu1,.bu2,.bu3,.bu4,.bu5,.bu6,.bu7
+{  
+   cursor:pointer;
+   text-align:center;
+   float:left;
+   clear:both;
+   font-size:10px;
+   width:70px;
+   color:white;
+   padding:5px;
+   margin:5px;
+   -webkit-border-radius:15px;
+   -moz-border-radius:15px;
+    background-color:gray;
+}
+#box1,#box2,#box3,#box4,#box5
+{  
+   float: left;	
+   height: 75px;
+   width: 75px;
+   border: 2px solid #ddd;
+   border-radius: 10px;
+   margin: 20px 20px 0 0;
+   text-align: center;
+   line-height: 75px;
+   font-size: 20px;
+}
+div.content
+{
+float:left;
+width:1100px;
+border-left:1px solid blue;
+padding:1em;
+height:90%
+}
+#juxing
+{
+ clear:left;
+ float:left;
+ width:500px;
+ height:90% ; 
+}
+#shuju
+{
+ float:left;
+ width:500px;
+ height:100%;
+ border-left:1px solid red; 
+}
+</style>
+</head>
+
+
+
+<script>
+var n=0;
+var shuju= new Array();
+var shuju1= new Array();
+var list= new Array();
+list[0]="1";
+list[1]="2";
+list[2]="3";
+list[3]="4";
+list[4]="5";
+/*function swap(a,b)   
+{       
+    var m;       
+    m = a;       
+    a = b;       
+    b = m;   
+} */
+function jisuan(list,k,m)
+{ 
+   var i;    
+    if(k > m)       
+    {            
+         shuju.push(list[0]+list[1]+list[2]+list[3]+list[4]); 
+		 shuju1.push(list[0]+list[1]+list[2]+list[3]+list[4]); 
+          n++;                
+    }       
+    else       
+    {           
+        for(i = k; i <= m; i++)           
+        {    
+             		
+            var o;
+            o=list[k];
+            list[k]=list[i];
+            list[i]=o; 
+            if(k!=i){shuju.push(list[0]+list[1]+list[2]+list[3]+list[4]);}				
+            jisuan(list, k + 1, m);		
+            var h;
+            h=list[k];
+            list[k]=list[i];
+            list[i]=h; 
+            if(k!=i){shuju.push(list[0]+list[1]+list[2]+list[3]+list[4]);	}		
+        
+        }       
+    } 
+   for(var j=0;j<shuju.length;j++){
+	if(shuju[j]==shuju[j+1])
+	     shuju.splice(j+1,1);
+  }
+  }
+</script>
+<script src="jquery-1.12.3.js"></script>
+
+<script>
+var j=0;
+var e=1;
+var int;
+function sleep(n){
+  var start=new Date().getTime();
+   while(true){
+   var time=new Date().getTime();
+   if(time-start>n){
+   break;}
+   }
+   }
+function play() {
+//var int=self.setInterval("play()",2000)
+
+ //$(document).ready(function(){
+           j=j+1;
+          if(j>shuju.length){return;}
+		  else {
+		  //for(j;j<shuju.length;j++){
+			var surt= new Array();
+			var x1=document.getElementById("box1");
+			var x2=document.getElementById("box2");
+			var x3=document.getElementById("box3");
+			var x4=document.getElementById("box4");
+			var x5=document.getElementById("box5");
+			if(shuju[j][0]!=x1.innerHTML)
+				surt.push(1);
+			if(shuju[j][1]!=x2.innerHTML)
+				surt.push(2);
+			if(shuju[j][2]!=x3.innerHTML)
+				surt.push(3);
+			if(shuju[j][3]!=x4.innerHTML)
+				surt.push(4);
+			if(shuju[j][4]!=x5.innerHTML)
+				surt.push(5);
+			
+			var div0=$("#box" + surt[0] + "");
+			var div1=$("#box" + surt[1] + "");
+			//var left1=div0.css("left");
+			//var left2=div1.css("left");
+			div0.animate({top:'200px'},"slow");
+			div1.animate({top:'200px'},"slow");
+			div0.animate({fontSize:'3em'},"slow");
+			div1.animate({fontSize:'3em'},"slow");
+			$(document).ready(function(){
+			$("#box" + surt[0] + "").animate({height:'show'},function(){
+			var y=document.getElementById("box" + surt[0] + "");
+			var z=document.getElementById("box" + surt[1] + ""); 
+			var w=y.innerHTML; 
+			y.innerHTML=z.innerHTML; 
+			z.innerHTML=w;
+			div0.animate({fontSize:'3em'},"slow");
+			div0.animate({fontSize:'1em'},"slow");
+			div1.animate({fontSize:'3em'},"slow");
+			div1.animate({fontSize:'1em'},"slow");
+			//div0.animate({left:left2},"slow");
+			//div1.animate({left:left1},"slow");
+			//	$(document).ready(function(){
+			div0.animate({top:'100px'},"slow");
+		
+			//$(document).ready(function(){
+			div1.animate({top:'100px'},"slow");
+			
+			if(shuju1[e]==x1.innerHTML+x2.innerHTML+x3.innerHTML+x4.innerHTML+x5.innerHTML){
+			document.getElementById("shuju").innerHTML+=x1.innerHTML+x2.innerHTML+x3.innerHTML+x4.innerHTML+x5.innerHTML;
+			document.getElementById("shuju").innerHTML+="</br>";
+			 e=e+1;}
+			// var int=self.setInterval("play()",2000)
+           
+			//function(){var int=self.setInterval("play()",6000)})
+            })			 
+			})
+			}
+			}
+ function time(){
+      //alert("反应有一丢丢慢，大人切莫着急！稍等片刻即可");
+	  play();
+      int=setInterval("play()",3500);
+	  }
+	  function time1(){
+      //alert("反应有一丢丢慢，大人切莫着急！稍等片刻即可");
+	  play();
+      int=setInterval("play()",4500);
+	  }
+/*$(document).ready(function(){
+	  $("bu3").click(function(){
+	  clearInterval(int);})
+	  })*/
+
+function play1() {
+$(document).ready(function(){
+           j=j-1;
+          if(j<1){return;}
+		  else {
+		  //for(j;j<shuju.length;j++){
+			var surt= new Array();
+			var x1=document.getElementById("box1");
+			var x2=document.getElementById("box2");
+			var x3=document.getElementById("box3");
+			var x4=document.getElementById("box4");
+			var x5=document.getElementById("box5");
+			if(shuju[j][0]!=x1.innerHTML)
+				surt.push(1);
+			if(shuju[j][1]!=x2.innerHTML)
+				surt.push(2);
+			if(shuju[j][2]!=x3.innerHTML)
+				surt.push(3);
+			if(shuju[j][3]!=x4.innerHTML)
+				surt.push(4);
+			if(shuju[j][4]!=x5.innerHTML)
+				surt.push(5);
+			
+			var div0=$("#box" + surt[0] + "");
+			var div1=$("#box" + surt[1] + "");
+			//var left1=div0.css("left");
+			//var left2=div1.css("left");
+			div0.animate({top:'200px'},"slow");
+			div1.animate({top:'200px'},"slow");
+			div0.animate({fontSize:'3em'},"slow");
+			div1.animate({fontSize:'3em'},"slow");
+			$(document).ready(function(){
+			$("#box" + surt[0] + "").animate({height:'show'},function(){
+			var y=document.getElementById("box" + surt[0] + "");
+			var z=document.getElementById("box" + surt[1] + ""); 
+			var w=y.innerHTML; 
+			y.innerHTML=z.innerHTML; 
+			z.innerHTML=w;
+			$(document).ready(function(){
+			$("#box" + surt[0] + "").animate({height:'show'},function(){
+			div0.animate({fontSize:'3em'},"slow");
+			div0.animate({fontSize:'1em'},"slow");
+			div1.animate({fontSize:'3em'},"slow");
+			div1.animate({fontSize:'1em'},"slow");
+			//div0.animate({left:left2},"slow");
+			//div1.animate({left:left1},"slow");
+			div0.animate({top:'100px'},"slow");
+			div1.animate({top:'100px'},"slow");}) })
+			});
+			//$(document).ready(function(){
+		   // $("#box" + surt[0] + "").animate({height:'show'},function(){play(j+1);});
+			//})
+		    //play(j+1);
+			})
+			}
+			})
+			}
+</script>
+
+<body>
+
+<div class="container">
+<div class="header">
+ <h1 style="color: #FF9900"><center>全排列递归算法原理</center></h1>
+</div>
+<div class="left">
+<div>先按预备,</br>再按开始。</br>先按暂停,</br>再按减速。</div>
+<div class="bu1" onclick="jisuan(list,0,4)" >预备</div>
+<div class="bu2" onclick="time()">开始</div>
+<div class="bu3" onclick="clearInterval(int)" >暂停</div>
+<div class="bu5" onclick="time1()" >减速</div>
+<div class="bu5" onclick="time()" >继续</div>
+<div class="bu6" onclick="play()">下一步</div>
+<div class="bu7" onclick="play1()">上一步</div>
+</div>
+<div class="content">
+<div id="juxing"><b><i>
+<div id="box1" style="position:absolute;left:150;top:100">1</div>
+<div id="box2" style="position:absolute;left:250; top:100">2</div>
+<div id="box3" style="position:absolute;left:350; top:100" >3</div>
+<div id="box4" style="position:absolute;left:450; top:100">4</div>
+<div id="box5" style="position:absolute;left:550; top:100">5</div>
+ </b> </i>  </div>
+<div id="shuju">
+<h3 style color='#CC33FF'>全排列结果</h3>
+12345
+</br>
+</div>
+</div>
+</body>
+</html>
